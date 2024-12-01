@@ -1,13 +1,18 @@
 const express = require('express');
-const router = express.Router();
+const authenticateToken = require('../middleware/authenticateToken');
 const {
-  getAffirmations,
-  createAffirmation,
-  deleteAffirmation,
+    getAffirmations,
+    createAffirmation,
+    deleteAffirmation,
 } = require('../controllers/affirmationController');
 
+const router = express.Router();
+
+// Public route
 router.get('/', getAffirmations);
-router.post('/', createAffirmation);
-router.delete('/:id', deleteAffirmation);
+
+// Protected routes
+router.post('/', authenticateToken, createAffirmation);
+router.delete('/:id', authenticateToken, deleteAffirmation);
 
 module.exports = router;

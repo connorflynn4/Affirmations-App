@@ -26,10 +26,16 @@ const createAffirmation = async (req, res) => {
 // Delete an affirmation by ID
 const deleteAffirmation = async (req, res) => {
   try {
-    await Affirmation.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Affirmation deleted' });
+      const affirmation = await Affirmation.findById(req.params.id);
+
+      if (!affirmation) {
+          return res.status(404).json({ message: 'Affirmation not found' });
+      }
+
+      await Affirmation.findByIdAndDelete(req.params.id);
+      res.json({ message: 'Affirmation deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
   }
 };
 
