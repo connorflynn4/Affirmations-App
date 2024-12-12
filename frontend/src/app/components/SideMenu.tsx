@@ -21,10 +21,6 @@ const SideMenu: React.FC = () => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
-
-      // Mock
-      const mockUserName = "Connor Flynn"; // WIP Replace with real user data fetching logic
-      setUserName(mockUserName);
     } else {
       setIsLoggedIn(false);
     }
@@ -67,10 +63,7 @@ const SideMenu: React.FC = () => {
       <div className="p-4 border-t border-gray-700">
         {isLoggedIn ? (
           <>
-            <div className="text-sm mb-4">
-              <p>Signed in as:</p>
-              <p className="font-bold">{userName}</p>
-            </div>
+            
             <button
               onClick={handleLogout}
               className="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded"

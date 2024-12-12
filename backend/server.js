@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const affirmationsRouter = require('./routes/affirmations');
 const authRoutes = require('./routes/authRoutes'); // Import the auth routes
+const meditationsRouter = require('./routes/meditationRoutes'); // Import the meditations routes
 
 dotenv.config(); // Load environment variables
 connectDB(); // Connect to the database
@@ -18,6 +19,7 @@ app.use(express.json()); // Parse incoming JSON requests
 // Routes
 app.use('/api/affirmations', affirmationsRouter); // Affirmations routes
 app.use('/api/auth', authRoutes); // Authentication routes
+app.use('/api/meditations', meditationsRouter); // Meditations routes
 
 // Root route
 app.get('/', (req, res) => {
